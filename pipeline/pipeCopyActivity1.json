@@ -1,6 +1,7 @@
 {
-	"name": "pipeCopyActivity",
+	"name": "pipeCopyActivity1",
 	"properties": {
+		"description": "file to file with dynamic name\nas it is name in target  similar to source.",
 		"activities": [
 			{
 				"name": "Copy data1",
