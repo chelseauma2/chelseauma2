@@ -5,12 +5,20 @@
 			"referenceName": "AzureDataLakeStorage2",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"DataSetTargetFile": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "loctest2.csv",
+				"fileName": {
+					"value": "@dataset().DataSetTargetFile",
+					"type": "Expression"
+				},
 				"folderPath": "target",
 				"fileSystem": "data"
 			},
