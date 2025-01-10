@@ -5,11 +5,11 @@
 		"factoryName": {
 			"value": "umAzureDataFactory"
 		},
-		"AzureDataLakeStorage2_accountKey": {
-			"value": ""
-		},
 		"AzureDataLakeStorage2_properties_typeProperties_url": {
 			"value": "https://azureblobstorage02.dfs.core.windows.net/"
+		},
+		"ls_kv_all_properties_typeProperties_baseUrl": {
+			"value": "https://kv-uma-dev.vault.azure.net/"
 		},
 		"containerUri": {
 			"value": ""

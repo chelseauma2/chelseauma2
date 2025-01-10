@@ -7,13 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "umAzureDataFactory"
 		},
-		"AzureDataLakeStorage2_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
-		},
 		"AzureDataLakeStorage2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azureblobstorage02.dfs.core.windows.net/"
+		},
+		"ls_kv_all_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv-uma-dev.vault.azure.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -42,8 +42,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureDataLakeStorage2_accountKey": {
-						"value": "[parameters('AzureDataLakeStorage2_accountKey')]"
+					"ls_kv_all_properties_typeProperties_baseUrl": {
+						"value": "[parameters('ls_kv_all_properties_typeProperties_baseUrl')]"
 					},
 					"AzureDataLakeStorage2_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]"
