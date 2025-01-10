@@ -113,16 +113,13 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "TargetDataSetCsv",
-									"type": "DatasetReference",
-									"parameters": {
-										"DataSetTargetFile": "Location.csv"
-									}
+									"referenceName": "lcDataSetCsv",
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "sourceDataSet_csv",
+									"referenceName": "locdatasetCsv",
 									"type": "DatasetReference"
 								}
 							]
