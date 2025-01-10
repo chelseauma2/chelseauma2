@@ -57,7 +57,10 @@
 				"outputs": [
 					{
 						"referenceName": "TargetDataSetCsv",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"DataSetTargetFile": "tgt"
+						}
 					}
 				]
 			}
