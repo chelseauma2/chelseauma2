@@ -1,5 +1,5 @@
 {
-	"name": "sourceDataSet_csv",
+	"name": "ds_merge",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage2",
@@ -10,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "*.txt",
-				"folderPath": "source/SRC_MRG_FILES",
+				"folderPath": "target",
 				"fileSystem": "data"
 			},
 			"columnDelimiter": ",",
