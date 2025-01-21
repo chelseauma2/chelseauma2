@@ -1,0 +1,12 @@
+{
+	"name": "RestResourceTest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestServiceForAPI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
