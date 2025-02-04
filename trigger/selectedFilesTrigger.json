@@ -1,0 +1,25 @@
+{
+	"name": "selectedFilesTrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "AnshPip_onlyselectedFiles",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2025-02-05T18:57:00",
+				"endTime": "2025-02-06T19:00:00",
+				"timeZone": "Eastern Standard Time"
+			}
+		}
+	}
+}
