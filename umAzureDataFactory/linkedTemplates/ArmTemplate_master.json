@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "https://reqres.in/api/Users?page=1"
 		},
+		"linked_git_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com"
+		},
 		"ls_kv_all_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://kv-uma-dev.vault.azure.net/"
@@ -48,6 +52,9 @@
 					},
 					"RestServiceForAPI_properties_typeProperties_url": {
 						"value": "[parameters('RestServiceForAPI_properties_typeProperties_url')]"
+					},
+					"linked_git_properties_typeProperties_url": {
+						"value": "[parameters('linked_git_properties_typeProperties_url')]"
 					},
 					"ls_kv_all_properties_typeProperties_baseUrl": {
 						"value": "[parameters('ls_kv_all_properties_typeProperties_baseUrl')]"

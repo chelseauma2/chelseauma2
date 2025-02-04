@@ -11,6 +11,9 @@
 		"RestServiceForAPI_properties_typeProperties_url": {
 			"value": "https://reqres.in/api/Users?page=1"
 		},
+		"linked_git_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		},
 		"ls_kv_all_properties_typeProperties_baseUrl": {
 			"value": "https://kv-uma-dev.vault.azure.net/"
 		}
