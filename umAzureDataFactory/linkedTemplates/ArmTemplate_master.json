@@ -23,6 +23,10 @@
 			"type": "string",
 			"defaultValue": "https://kv-uma-dev.vault.azure.net/"
 		},
+		"managetrigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/3c3e578f-f41b-41a8-83b1-67ba1db815b3/resourceGroups/umaStudentGroup/providers/Microsoft.Storage/storageAccounts/azureblobstorage02"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -79,6 +83,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"managetrigger_properties_typeProperties_scope": {
+						"value": "[parameters('managetrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
