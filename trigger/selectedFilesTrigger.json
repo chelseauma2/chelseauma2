@@ -15,7 +15,7 @@
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Minute",
-				"interval": 15,
+				"interval": 5,
 				"startTime": "2025-02-04T19:04:00",
 				"endTime": "2025-02-04T19:20:00",
 				"timeZone": "Eastern Standard Time"
