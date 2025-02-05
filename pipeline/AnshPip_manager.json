@@ -62,7 +62,7 @@
 				]
 			},
 			{
-				"name": "Delete1",
+				"name": "Deletefile",
 				"type": "Delete",
 				"dependsOn": [
 					{
@@ -81,7 +81,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"enableLogging": true
+					"dataset": {
+						"referenceName": "csvdsmanagetrigger",
+						"type": "DatasetReference"
+					},
+					"enableLogging": false,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
 				}
 			}
 		],
