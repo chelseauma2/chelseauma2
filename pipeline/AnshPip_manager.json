@@ -92,6 +92,29 @@
 						"enablePartitionDiscovery": false
 					}
 				}
+			},
+			{
+				"name": "ExecuteGitpipeline",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Deletefile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "AnshPipe_GithubConn",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"annotations": []
