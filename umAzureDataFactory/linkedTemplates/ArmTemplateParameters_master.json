@@ -5,6 +5,15 @@
 		"factoryName": {
 			"value": "umAzureDataFactory"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://vijayadls2025.dfs.core.windows.net/"
+		},
 		"AzureDataLakeStorage2_properties_typeProperties_url": {
 			"value": "https://azureblobstorage02.dfs.core.windows.net/"
 		},

@@ -17,6 +17,97 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/reporting_sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"p_filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().p_filename",
+							"type": "Expression"
+						},
+						"folderPath": "csvfiles",
+						"fileSystem": "reporting"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sourceDataSet_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "*.txt",
+						"folderPath": "source/SRC_MRG_FILES",
+						"fileSystem": "data"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "mail_id",
+						"type": "String"
+					},
+					{
+						"name": "discount_code",
+						"type": "String"
+					},
+					{
+						"name": "user_id",
+						"type": "String"
+					},
+					{
+						"name": "location_code",
+						"type": "String"
+					},
+					{
+						"name": "lattitude",
+						"type": "String"
+					},
+					{
+						"name": "info1",
+						"type": "String"
+					},
+					{
+						"name": "info2",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/targetdsmanagetrigger')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -83,6 +174,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "pratice"
 				},
 				"annotations": []
 			},
@@ -158,6 +252,9 @@
 						"type": "Array"
 					}
 				},
+				"folder": {
+					"name": "pratice"
+				},
 				"annotations": []
 			},
 			"dependsOn": []
@@ -232,6 +329,9 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"folder": {
+					"name": "pratice"
+				},
 				"annotations": []
 			},
 			"dependsOn": []
@@ -305,6 +405,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "pratice"
 				},
 				"annotations": []
 			},
@@ -393,6 +496,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "pratice"
 				},
 				"annotations": []
 			},
@@ -609,9 +715,14 @@
 						"type": "String"
 					}
 				},
+				"folder": {
+					"name": "pratice"
+				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/sourceDataSet_csv')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Ansh_TransformCsv')]",
@@ -832,6 +943,9 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"folder": {
+					"name": "pratice"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -1024,10 +1138,14 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"folder": {
+					"name": "pratice"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/Ansh_TransformCsv')]"
+				"[concat(variables('factoryId'), '/dataflows/Ansh_TransformCsv')]",
+				"[concat(variables('factoryId'), '/datasets/reporting_sink')]"
 			]
 		},
 		{
@@ -1080,6 +1198,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "pratice"
 				},
 				"annotations": []
 			},

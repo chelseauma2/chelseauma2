@@ -7,6 +7,18 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "umAzureDataFactory"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://vijayadls2025.dfs.core.windows.net/"
+		},
 		"AzureDataLakeStorage2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azureblobstorage02.dfs.core.windows.net/"
@@ -74,6 +86,9 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"folder": {
+					"name": "pratice"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -130,6 +145,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "pratice"
 				},
 				"annotations": []
 			},
@@ -208,6 +226,9 @@
 						"type": "Array"
 					}
 				},
+				"folder": {
+					"name": "pratice"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -283,6 +304,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "pratice"
 				},
 				"annotations": []
 			},
@@ -418,6 +442,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "pratice"
 				},
 				"annotations": []
 			},
@@ -612,6 +639,9 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"folder": {
+					"name": "pratice"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -690,6 +720,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "pratice"
 				},
 				"annotations": []
 			},
@@ -781,6 +814,9 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "pratice"
 				},
 				"annotations": []
 			},
@@ -999,6 +1035,9 @@
 					"targetFile": {
 						"type": "String"
 					}
+				},
+				"folder": {
+					"name": "pratice"
 				},
 				"annotations": []
 			},
@@ -1731,6 +1770,36 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage2')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage2')]",
