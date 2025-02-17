@@ -62,6 +62,9 @@
 				"type": "Array"
 			}
 		},
+		"folder": {
+			"name": "pratice"
+		},
 		"annotations": []
 	}
 }
