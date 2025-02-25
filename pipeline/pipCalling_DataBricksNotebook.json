@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Notebook1",
+				"name": "parameterized_Notebook1",
 				"type": "DatabricksNotebook",
 				"dependsOn": [],
 				"policy": {
