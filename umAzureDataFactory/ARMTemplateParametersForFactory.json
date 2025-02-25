@@ -20,6 +20,15 @@
 		"AzureDataLakeStorage2_properties_typeProperties_url": {
 			"value": "https://azureblobstorage02.dfs.core.windows.net/"
 		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "mysqlserver2222.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "umadatabase"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "chelseauma"
+		},
 		"RestServiceForAPI_properties_typeProperties_url": {
 			"value": "https://reqres.in/api/Users?page=1"
 		},
@@ -31,15 +40,6 @@
 		},
 		"triggerman_properties_typeProperties_scope": {
 			"value": "/subscriptions/3c3e578f-f41b-41a8-83b1-67ba1db815b3/resourceGroups/umaStudentGroup/providers/Microsoft.Storage/storageAccounts/azureblobstorage02"
-		},
-		"AzureSqlDatabase1_properties_typeProperties_server": {
-			"value": "mysqlserver2222.database.windows.net"
-		},
-		"AzureSqlDatabase1_properties_typeProperties_database": {
-			"value": "umadatabase"
-		},
-		"AzureSqlDatabase1_properties_typeProperties_userName": {
-			"value": "chelseauma"
 		}
 	}
 }
