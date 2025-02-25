@@ -15,7 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Workspace/Users/uma.mhrzn@gmail.com/subinclass/parameterized"
+					"notebookPath": "/Workspace/Users/uma.mhrzn@gmail.com/subinclass/parameterized",
+					"baseParameters": {
+						"Number_of_Salary": "2"
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "ls_Azure_Databricks",
