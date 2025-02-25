@@ -14,6 +14,9 @@
 		"AzureSqlDatabase1_password": {
 			"value": ""
 		},
+		"ls_Azure_Databricks_accessToken": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://vijayadls2025.dfs.core.windows.net/"
 		},
@@ -40,6 +43,9 @@
 		},
 		"triggerman_properties_typeProperties_scope": {
 			"value": "/subscriptions/3c3e578f-f41b-41a8-83b1-67ba1db815b3/resourceGroups/umaStudentGroup/providers/Microsoft.Storage/storageAccounts/azureblobstorage02"
+		},
+		"ls_Azure_Databricks_properties_typeProperties_existingClusterId": {
+			"value": "0221-025625-vqvi12dy"
 		}
 	}
 }

@@ -6,16 +6,106 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "umAzureDataFactory"
-		},
-		"triggerman_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/3c3e578f-f41b-41a8-83b1-67ba1db815b3/resourceGroups/umaStudentGroup/providers/Microsoft.Storage/storageAccounts/azureblobstorage02"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/csvdsmanagetrigger')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Fact_Sales_1.csv",
+						"folderPath": "csvfiles",
+						"fileSystem": "source"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "transaction_id",
+						"type": "String"
+					},
+					{
+						"name": "transactional_date",
+						"type": "String"
+					},
+					{
+						"name": "product_id",
+						"type": "String"
+					},
+					{
+						"name": "customer_id",
+						"type": "String"
+					},
+					{
+						"name": "payment",
+						"type": "String"
+					},
+					{
+						"name": "credit_card",
+						"type": "String"
+					},
+					{
+						"name": "loyalty_card",
+						"type": "String"
+					},
+					{
+						"name": "cost",
+						"type": "String"
+					},
+					{
+						"name": "quantity",
+						"type": "String"
+					},
+					{
+						"name": "price",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow_sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "dataflow_output",
+						"fileSystem": "reporting"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dataflow_source')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -1145,7 +1235,8 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/dataflow_source')]"
+				"[concat(variables('factoryId'), '/datasets/dataflow_source')]",
+				"[concat(variables('factoryId'), '/datasets/dataflow_sink')]"
 			]
 		},
 		{
@@ -1282,6 +1373,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/csvdsmanagetrigger')]",
 				"[concat(variables('factoryId'), '/datasets/targetdsmanagetrigger')]",
 				"[concat(variables('factoryId'), '/pipelines/AnshPipe_GithubConn')]"
 			]
@@ -1481,97 +1573,6 @@
 				"[concat(variables('factoryId'), '/dataflows/Ansh_TransformCsv')]",
 				"[concat(variables('factoryId'), '/datasets/param_source_csv')]",
 				"[concat(variables('factoryId'), '/datasets/reporting_sink')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AnshPip_Prodpipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "ExecuteManagerPipeline",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"policy": {
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "AnshPip_manager",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "ExecuteOnSelectedFilePipeline",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "ExecuteManagerPipeline",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "AnshPip_onlyselectedFiles",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"folder": {
-					"name": "pratice"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/AnshPip_manager')]",
-				"[concat(variables('factoryId'), '/pipelines/AnshPip_onlyselectedFiles')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/triggerman')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "AnshPip_Prodpipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/source/blobs/csvfiles/Fact_Sales_1.csv",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('triggerman_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/AnshPip_Prodpipeline')]"
 			]
 		}
 	]
